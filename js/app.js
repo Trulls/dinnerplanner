@@ -52,12 +52,20 @@ var App = function(model) {
   this.switchView = function(view, choice) {
     viewsShown[view](choice);
   };
+
+  this.notifyObservers = function() {
+    _.each(views, function(v, i) {
+      v.notify();
+    });
+  };
 };
 
 $(function() {
+  console.log("Instantiating model");
 	//We instantiate our model
 	var model = new DinnerModel();
   // Test fixture
+  console.log("Adding text fixture and setting number of guests");
   model.addDishToMenu(1);
   model.addDishToMenu(3);
   model.addDishToMenu(100);
@@ -65,6 +73,8 @@ $(function() {
   model.setNumberOfGuests(4);
   // ----
 	//And create the needed controllers and views
+  console.log("Creating needed controllers and views");
   window.app = new App(model);
+  console.log("Switching to view: 'select'");
   app.switchView('select')
 });

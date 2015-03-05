@@ -7,10 +7,12 @@ var DinnerModel = function() {
 	this.listeners = [];
 
 	this.listenTo = function(fun) {
+		console.log("Function called: listenTo()");
 		this.listeners.push(fun);
 	};
 
 	this.notify = function() {
+		console.log("Function called: notify()");
 		_.each(this.listeners, function(listener) {
 			listener();
 		});
@@ -21,27 +23,32 @@ var DinnerModel = function() {
 
 
 	this.setNumberOfGuests = function(num) {
+		console.log("Function called: setNumberOfGuests()");
 		this.numberOfGuests = num;
 		this.notify();
 	};
 
 	// should return
 	this.getNumberOfGuests = function() {
+		console.log("Function called: getNumberOfGuests()");
 		return this.numberOfGuests;
 	};
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
+		console.log("Function called: getSelectedDish()");
 		return this.selectedDishes[type];
 	};
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
+		console.log("Function called: getFullMenu()");
 		return dishes;
 	};
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
+		console.log("Function called: getAllIngredients()");
 		ingredients = [];
 		dishes.forEach(function(dish) {
 			ingredients.push(_.pluck(dish.ingredients, 'name'));
@@ -50,6 +57,7 @@ var DinnerModel = function() {
 	};
 
 	this.getDishPrice = function(id) {
+		console.log("Function called: getDishPrice()");
 		price = 0;
 		dish = this.getDish(id);
 		dish.ingredients.forEach(function(ingredient) {
@@ -60,6 +68,7 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
+		console.log("Function called: getTotalMenuPrice()");
 		var unitCost = 0;
 		_.each(this.selectedDishes, function(dish) {
 			unitCost += this.getDishPrice(dish.id);
@@ -70,6 +79,7 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
+		console.log("Function called: addDishToMenu()");
 		selectedDish = _.find(dishes, function(dish) {
 			return dish.id === id;
 		});
@@ -79,6 +89,7 @@ var DinnerModel = function() {
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
+		console.log("Function called: removeDishFromMenu()");
 		_.reject(this.selectedDishes, function(dish) {
 			return dish.id === id;
 		});
@@ -89,31 +100,60 @@ var DinnerModel = function() {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return $(dishes).filter(function(index,dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			$.each(dish.ingredients,function(index,ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
+		console.log("Function called: getAllDishes()");
+	  	return $(dishes).filter(function(index,dish) {
+			var found = true;
+			if(filter){
+				found = false;
+				$.each(dish.ingredients,function(index,ingredient) {
+					if(ingredient.name.indexOf(filter)!=-1) {
+						found = true;
+					}
+				});
+				if(dish.name.indexOf(filter) != -1)
+				{
 					found = true;
 				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
 			}
-		}
-	  	return dish.type == type && found;
-	  });
+			return dish.type == type && found;
+		});
 	};
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
-			}
-		}
+		console.log("Function called: getDish(id)");
+		return dish = getRecipeJson(this, this.convert);
+	 //  	for(key in dishes){
+		// 	if(dishes[key].id == id) {
+		// 		return dishes[key];
+		// 	}
+		// }
+	};
+
+	this.convert = function (data) {
+		console.log("Function called: addDishToMenu()");
+		var dish = {
+			'id':data.RecipeID,
+			'name':data.Title,
+			'type':data.Category,
+			'image':data.ImageURL,
+			'description':data.Instructions,
+			//'description':data.Description,
+			//'instructions':data.Instructions,
+			'ingredients':[{
+				'name':'cookies',
+				'quantity':2,
+				'unit':'',
+				'price':1
+				},{
+				'name':'milk',
+				'quantity':2,
+				'unit':'dl',
+				'price':1
+			}]
+		};
+		console.log("..........Dish converted into: ",dish);
+		return dish;
 	};
 
 

@@ -10,7 +10,7 @@ var SelectView = function (container, model, router) {
 
   // Functions
   this.addDishToMenu = function(dish) {
-    menuContainer.append('<div class="course-container col-md-2"><a href="description.html" data-id="'+dish.id+'"><div class="course-box"><img src="images/'+dish.image+'"></img><div class="course-name">'+dish.name+'</div></div><div>'+dish.description+'</div></a></div>');
+    menuContainer.append('<div class="course-container col-xs-2"><a href="description.html" data-id="'+dish.id+'"><div class="course-box"><img src="images/'+dish.image+'"></img><div class="course-name">'+dish.name+'</div></div><div>'+dish.description+'</div></a></div>');
   };
   this.show =function() {
     container.show();
