@@ -8,7 +8,7 @@ var SummaryView = function (container, model) {
   this.confirmButton = container.find('.confirm-dinner');
 
   this.addDishToSelected = function(dish) {
-    dishesContainer.append('<div class="col-md-8">'+dish.name+'</div><div class="col-md-4">'+model.getDishPrice(dish.id)+'</div>');
+    dishesContainer.append('<div class="col-sm-8">'+dish.name+'</div><div class="col-sm-4">'+model.getDishPrice(dish.id)+'</div>');
   };
 
   this.setMenuPrice = function() {

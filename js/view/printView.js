@@ -7,13 +7,13 @@ var PrintView = function (container, model) {
   // Functions
   this.addDishToSelected = function(dish) {
     dishesContainer.append('<div class="row">'+
-            '<div class="course-container course-box col-md-2"><img src="images/'+dish.image+'"></img></div>'+
-            '<div class="course-container col-md-4">'+
+            '<div class="course-container course-box col-sm-2"><img src="images/'+dish.image+'"></img></div>'+
+            '<div class="course-container col-sm-4">'+
                 '<h1>'+dish.name+'</h1>'+
                 '<br/>'+
                 '<p>'+dish.description+'</p>'+
             '</div>'+
-            '<div class="course-container col-md-4">'+
+            '<div class="course-container col-sm-4">'+
                 '<h2>PREPARATION</h2>'+
                 '<br/>'+
                 '<p>'+dish.description+'</p>'+

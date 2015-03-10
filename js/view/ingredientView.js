@@ -21,10 +21,10 @@ var IngredientView = function (container, model) {
   this.addIngredients = function(dish) {
     _.each(dish.ingredients, function(ingredient) {
       ingredientContainer.append('<div class="row">'+
-                '<div class="col-md-2">'+ingredient.quantity+'</div>'+
-                '<div class="col-md-6">'+ingredient.name+'</div>'+
-                '<div class="col-md-2">SEK</div>'+
-                '<div class="col-md-2">'+ingredient.price+'</div>'+
+                '<div class="col-xs-2">'+ingredient.quantity+'</div>'+
+                '<div class="col-xs-6">'+ingredient.name+'</div>'+
+                '<div class="col-xs-2">SEK</div>'+
+                '<div class="col-xs-2">'+ingredient.price+'</div>'+
               '</div>')
     });
   };

@@ -2,10 +2,10 @@ var SumheaderView = function (container, model) {
   
   // Functions
   this.setNumberOfGuests = function() {
-    container.append('<h2 class="mydinner-header col-md-9">'+
+    container.append('<h2 class="mydinner-header col-sm-9">'+
                           'My Dinner: '+model.getNumberOfGuests()+
                           ' people</h2>'+
-                          '<div class="col-md-3">'+
+                          '<div class="col-sm-3">'+
                           '<a href="selectdish.html" class="btn start-button back-button">'+
                           'Go back and edit dinner</a></div>'
                           );

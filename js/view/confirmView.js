@@ -5,7 +5,7 @@ var ConfirmView = function (container, model) {
   
   // Functions
   this.addDishToSelected = function(dish, update) {
-    dishesContainer.append('<div class="col-md-3">'+
+    dishesContainer.append('<div class="col-sm-3">'+
           '<div class="course-box">'+
             '<img src="images/'+dish.image+'"></img>'+
             '<div class="course-name">'+dish.name+'</div>'+

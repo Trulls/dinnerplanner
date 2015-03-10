@@ -1,5 +1,4 @@
 var App = function(model) {
-  // Views and model
   var views = {
     selectView: new SelectView($(".select-container"), model),
     descriptionView: new DescriptionView($(".description-container"), model),
@@ -59,12 +58,12 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
   // Test fixture
-  console.log("Adding text fixture and setting number of guests");
-  model.addDishToMenu(1);
-  model.addDishToMenu(3);
-  model.addDishToMenu(100);
-  model.addDishToMenu(201);
-  model.setNumberOfGuests(4);
+  // console.log("Adding text fixture and setting number of guests");
+  // model.addDishToMenu(1);
+  // model.addDishToMenu(3);
+  // model.addDishToMenu(100);
+  // model.addDishToMenu(201);
+  // model.setNumberOfGuests(4);
   // ----
 	//And create the needed controllers and views
   console.log("Creating needed controllers and views");
