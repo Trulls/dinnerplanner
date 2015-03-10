@@ -42,6 +42,7 @@ var IngredientView = function (container, model) {
   };
 
   this.update = function(dish) {
+    console.log("Update called: IngredientView");
     ingredientContainer.html('');
     this.addIngredients(dish);
     this.setTotalPrice(dish);

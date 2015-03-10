@@ -14,7 +14,8 @@ var App = function(model) {
     descriptionController: new DescriptionController(views.descriptionView, model),
     ingredientController: new IngredientController(views.ingredientView, model),
     sumheaderController: new SumheaderController(views.sumheaderView, model),
-    confirmController: new ConfirmController(views.confirmView, model)
+    confirmController: new ConfirmController(views.confirmView, model),
+    printController: new PrintController(views.printView, model)
   };
 
   var viewsShown = {
@@ -49,6 +50,7 @@ var App = function(model) {
       };
 
   this.switchView = function(view, choice) {
+    console.log("Switched to view: " + view);
     viewsShown[view](choice);
   };
 };
@@ -57,17 +59,16 @@ $(function() {
   console.log("Instantiating model");
 	//We instantiate our model
 	var model = new DinnerModel();
+  model.setNumberOfGuests(4);
   // Test fixture
   // console.log("Adding text fixture and setting number of guests");
   // model.addDishToMenu(1);
   // model.addDishToMenu(3);
   // model.addDishToMenu(100);
   // model.addDishToMenu(201);
-  // model.setNumberOfGuests(4);
   // ----
 	//And create the needed controllers and views
   console.log("Creating needed controllers and views");
   window.app = new App(model);
-  console.log("Switching to view: 'select'");
   app.switchView('select')
 });

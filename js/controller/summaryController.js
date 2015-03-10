@@ -1,7 +1,7 @@
 var SummaryController = function (view, model) {
   _.bindAll(view, 'update');
-  this.addListeners = function() {
-    model.addObserver(view.update);
+  this.addObserver = function() {
+    model.addObserver(view);
   };
   view.numberPeople.change(function(e) {
     model.setNumberOfGuests($(e.target).val());
@@ -10,5 +10,5 @@ var SummaryController = function (view, model) {
     e.preventDefault();
     window.app.switchView('confirm');
   });
-  this.addListeners();
+  this.addObserver();
 };

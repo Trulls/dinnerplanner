@@ -21,6 +21,7 @@ var SelectView = function (container, model, router) {
   };
 
   this.update = function(category) {
+    console.log("Update called: SelectView");
     menuContainer.html('');
     _.each(model.getAllDishes(category).toArray(), function(dish) {
       this.addDishToMenu(dish);

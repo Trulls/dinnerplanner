@@ -198,16 +198,16 @@ var DinnerModel = function() {
 
 	this._observers = [];
 
-	this.addObserver = function(observer) 
-	{
+	this.addObserver = function(observer) {
+		console.log("Function called: addObserver()");
 		this._observers.push(observer);
 	}
 
-	this.notifyObservers = function(arg) 
-	{
-		for(var i=0; i<this._observers.length; i++) 
-		{
-			this._observers[i].update(arg);
+	this.notifyObservers = function() {
+		console.log("Function called: notifyObservers()");
+		console.log(this._observers);
+		for(var i=0; i<this._observers.length; i++) {
+			this._observers[i].update();
 		}	
 	}
 

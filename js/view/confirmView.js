@@ -5,7 +5,8 @@ var ConfirmView = function (container, model) {
   
   // Functions
   this.addDishToSelected = function(dish, update) {
-    dishesContainer.append('<div class="col-sm-3">'+
+    console.log("Function called: addDishToSelected()");
+    dishesContainer.append('<div class="col-xs-3">'+
           '<div class="course-box">'+
             '<img src="images/'+dish.image+'"></img>'+
             '<div class="course-name">'+dish.name+'</div>'+
@@ -22,6 +23,7 @@ var ConfirmView = function (container, model) {
     container.hide();
   };
   this.update = function() {
+    console.log("Update called: ConfirmView");
     dishesContainer.html('');
     _.each(model.selectedDishes,function(dish) {
       this.addDishToSelected(dish);

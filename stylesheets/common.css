@@ -57,6 +57,9 @@ body, html {
   border: 1px solid black;
   border-radius: 3px;
 }
+.confirm-n-print-box{
+  padding-top: 5px;  
+}
 .top-box {
   height: 30%;
 }
@@ -121,9 +124,6 @@ body, html {
 /* Print page */
 .print-container {
   overflow: scroll;
-}
-.print-header {
-  border: 2px solid;
 }
 /*Fonts*/
 body{

@@ -8,7 +8,7 @@ var SummaryView = function (container, model) {
   this.confirmButton = container.find('.confirm-dinner');
 
   this.addDishToSelected = function(dish) {
-    dishesContainer.append('<div class="col-sm-8">'+dish.name+'</div><div class="col-sm-4">'+model.getDishPrice(dish.id)+'</div>');
+    dishesContainer.append('<div class="col-xs-8">'+dish.name+'</div><div class="col-xs-4">'+model.getDishPrice(dish.id)+'</div>');
   };
 
   this.setMenuPrice = function() {
@@ -28,6 +28,7 @@ var SummaryView = function (container, model) {
   };
 
   this.update = function() {
+    console.log("Update called: SummaryView");
     dishesContainer.html('');
     _.each(model.selectedDishes,function(dish) {
       this.addDishToSelected(dish);
