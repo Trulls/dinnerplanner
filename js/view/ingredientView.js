@@ -8,13 +8,12 @@ var IngredientView = function (container, model) {
 
   // Fields
   var ingredientContainer = container.find('#ingredient-list');
-
+  var guestContainer = container.find('#ingredient-guests');
   this.confirmButton = container.find('.confirm-dish');
 
   // Functions
 
   this.setNumberOfGuests = function() {
-    var guestContainer = container.find('#ingredient-guests');
     guestContainer.append('<h3>INGREDIENTS FOR '+model.getNumberOfGuests()+' PEOPLE</h3>');
   };
 
@@ -44,6 +43,8 @@ var IngredientView = function (container, model) {
   this.update = function(dish) {
     console.log("Update called: IngredientView");
     ingredientContainer.html('');
+    guestContainer.html('')
+    this.setNumberOfGuests();
     this.addIngredients(dish);
     this.setTotalPrice(dish);
   };

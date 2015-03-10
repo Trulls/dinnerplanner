@@ -1,14 +1,15 @@
 var SumheaderView = function (container, model) {
   
+  // Fields
+  var numbersContainer = container.find('#sumheader-numbers');
+  this.backButton = container.find('.back-button'); 
+
   // Functions
   this.setNumberOfGuests = function() {
-    container.append('<h2 class="mydinner-header col-xs-8">'+
-                          'My Dinner: '+model.getNumberOfGuests()+
-                          ' people</h2>'+
-                          '<div class="col-xs-4">'+
-                          '<a href="selectdish.html" class="btn start-button back-button">'+
-                          'Go back and edit dinner</a></div>'
-                          );
+    numbersContainer.append('<h2 class="mydinner-header col-xs-8">'+
+                            'My Dinner: '+model.getNumberOfGuests()+
+                            ' people</h2>'
+                            );
   };
   this.show =function() {
     container.show();
@@ -20,11 +21,8 @@ var SumheaderView = function (container, model) {
     console.log("Update called: SumheaderView");
     container.html('');
     this.setNumberOfGuests();
-    this.backButton = container.find('.back-button');
   };
 
-  //Fields
-  this.backButton = container.find('.back-button'); 
 
   // Init
   this.update(); 

@@ -5,18 +5,15 @@ var App = function(model) {
     confirmView: new ConfirmView($('.confirm-container'), model),
     printView: new PrintView($('.print-container'), model),
     summaryView: new SummaryView($(".summary-container"), model),
-    ingredientView: new IngredientView($(".ingredient-container"),model),
-    sumheaderView: new SumheaderView($(".sumheader-container"),model)};
+    ingredientView: new IngredientView($(".ingredient-container"),model)};
 
   var controllers = {
     summaryController: new SummaryController(views.summaryView, model),
     selectController: new SelectController(views.selectView, model),
     descriptionController: new DescriptionController(views.descriptionView, model),
     ingredientController: new IngredientController(views.ingredientView, model),
-    sumheaderController: new SumheaderController(views.sumheaderView, model),
     confirmController: new ConfirmController(views.confirmView, model),
-    printController: new PrintController(views.printView, model)
-  };
+    printController: new PrintController(views.printView, model)};
 
   var viewsShown = {
         select: function() {
@@ -35,12 +32,10 @@ var App = function(model) {
         confirm: function() {
           this.hideAll();
           views.confirmView.show();
-          views.sumheaderView.show();
         },
         print: function() {
           this.hideAll();
           views.printView.show();
-          views.sumheaderView.show();
         },
         hideAll: function() {
           _.each(views, function(v, i) {
@@ -57,17 +52,8 @@ var App = function(model) {
 
 $(function() {
   console.log("Instantiating model");
-	//We instantiate our model
 	var model = new DinnerModel();
   model.setNumberOfGuests(4);
-  // Test fixture
-  // console.log("Adding text fixture and setting number of guests");
-  // model.addDishToMenu(1);
-  // model.addDishToMenu(3);
-  // model.addDishToMenu(100);
-  // model.addDishToMenu(201);
-  // ----
-	//And create the needed controllers and views
   console.log("Creating needed controllers and views");
   window.app = new App(model);
   app.switchView('select')

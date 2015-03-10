@@ -13,10 +13,10 @@ var DescriptionView = function (container, model) {
   this.addDishToDescription = function(dish) {
     dishContainer.append('<h1>'+dish.name+'</h1>' +
             '<img src="images/'+dish.image+'"></img>' +
-            '<p>Bacon ipsum dolor amet bresaola tongue short loin pig, sausage chuck kielbasa brisket shank filet mignon cupim venison jerky flank. Pork chop shankle shoulder pancetta andouille kielbasa meatball tongue tail ball tip.</p>'+
+            '<p>'+dish.description+'</p>'+
             '<a href="selectdish.html" class="btn start-button back-button">Back to Select Dish</a>'+
             '<h2>PREPARATION</h2>'+
-            '<p>Bacon ipsum dolor amet bresaola tongue short loin pig, sausage chuck kielbasa brisket shank filet mignon cupim venison jerky flank. Pork chop shankle shoulder pancetta andouille kielbasa meatball tongue tail ball tip.</p>');
+            '<p>'+dish.instruction+'</p>');
     this.backButton = dishContainer.find('.back-button')
   };
   this.show =function() {

@@ -7,5 +7,9 @@ var ConfirmController = function (view, model) {
     e.preventDefault();
     window.app.switchView('print');
   });
+  view.backButton.click(function(e) {
+    e.preventDefault();
+    window.app.switchView('select');
+  });
   this.addObserver();
 };
