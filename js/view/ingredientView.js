@@ -41,7 +41,7 @@ var IngredientView = function (container, model) {
   };
 
   this.update = function(dish) {
-    console.log("Update called: IngredientView");
+    //console.log("Update called: IngredientView");
     ingredientContainer.html('');
     guestContainer.html('')
     this.setNumberOfGuests();

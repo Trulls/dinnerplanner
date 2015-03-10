@@ -10,7 +10,15 @@ var SelectView = function (container, model, router) {
 
   // Functions
   this.addDishToMenu = function(dish) {
-    menuContainer.append('<div class="course-container col-xs-2"><a href="description.html" data-id="'+dish.id+'"><div class="course-box"><img src="images/'+dish.image+'"></img><div class="course-name">'+dish.name+'</div></div><div>'+dish.description+'</div></a></div>');
+    menuContainer.append('<div class="course-container col-xs-2">' +
+                            '<a href="description.html" data-id="'+dish.id+'">' +
+                              '<div class="course-box">' +
+                                '<img src="'+dish.image+'"></img>' +
+                                '<div class="course-name">'+dish.name+'</div>' +
+                              '</div>' +
+                              '<div>'+dish.description+'</div>' + 
+                            '</a>' +
+                          '</div>');
   };
   this.show =function() {
     container.show();
@@ -21,9 +29,9 @@ var SelectView = function (container, model, router) {
   };
 
   this.update = function(category) {
-    console.log("Update called: SelectView");
+    // console.log("Update called: SelectView");
     menuContainer.html('');
-    _.each(model.getAllDishes(category).toArray(), function(dish) {
+    _.each(model.getAllDishes(category), function(dish) {
       this.addDishToMenu(dish);
     }, this);
   };

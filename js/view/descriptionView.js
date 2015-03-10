@@ -12,7 +12,7 @@ var DescriptionView = function (container, model) {
 
   this.addDishToDescription = function(dish) {
     dishContainer.append('<h1>'+dish.name+'</h1>' +
-            '<img src="images/'+dish.image+'"></img>' +
+            '<img src="'+dish.image+'"></img>' +
             '<p>'+dish.description+'</p>'+
             '<a href="selectdish.html" class="btn start-button back-button">Back to Select Dish</a>'+
             '<h2>PREPARATION</h2>'+
@@ -26,7 +26,7 @@ var DescriptionView = function (container, model) {
     container.hide();
   };
   this.update = function(dish) {
-    console.log("Update called: DescriptionView");
+    //console.log("Update called: DescriptionView");
     dishContainer.html('');
     this.addDishToDescription(dish);
   };

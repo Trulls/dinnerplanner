@@ -19,7 +19,7 @@ var ConfirmView = function (container, model) {
     console.log("Function called: addDishToSelected()");
     dishesContainer.append('<div class="col-xs-3">'+
                             '<div class="course-box">'+
-                              '<img src="images/'+dish.image+'"></img>'+
+                              '<img src="'+dish.image+'"></img>'+
                               '<div class="course-name">'+dish.name+'</div>'+
                             '</div>'+
                           '</div>');
@@ -34,7 +34,7 @@ var ConfirmView = function (container, model) {
     container.hide();
   };
   this.update = function() {
-    console.log("Update called: ConfirmView");
+    //console.log("Update called: ConfirmView");
     guestsContainer.html('');
     dishesContainer.html('');
     _.each(model.selectedDishes,function(dish) {

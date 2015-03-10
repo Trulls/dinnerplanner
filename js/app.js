@@ -45,7 +45,7 @@ var App = function(model) {
       };
 
   this.switchView = function(view, choice) {
-    console.log("Switched to view: " + view);
+    // console.log("Switched to view: " + view);
     viewsShown[view](choice);
   };
 };
@@ -53,7 +53,8 @@ var App = function(model) {
 $(function() {
   console.log("Instantiating model");
 	var model = new DinnerModel();
-  model.setNumberOfGuests(4);
+  model.getAllRecipes('Main dish');
+  // model.setNumberOfGuests(4);
   console.log("Creating needed controllers and views");
   window.app = new App(model);
   app.switchView('select')

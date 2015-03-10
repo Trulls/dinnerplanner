@@ -30,6 +30,7 @@ var SummaryView = function (container, model) {
   this.update = function() {
     console.log("Update called: SummaryView");
     dishesContainer.html('');
+    console.log(model.selectedDishes);
     _.each(model.selectedDishes,function(dish) {
       this.addDishToSelected(dish);
     }, this);
