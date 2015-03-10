@@ -1,34 +1,18 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
 
-	//TODO Lab 2 implement the data structure that will hold number of guest
-	// and selected dinner options for dinner menu
-
-	this.listeners = [];
-
-	this.listenTo = function(fun) {
-		console.log("Function called: listenTo()");
-		this.listeners.push(fun);
-	};
-
-	this.notify = function() {
-		console.log("Function called: notify()");
-		_.each(this.listeners, function(listener) {
-			listener();
-		});
-	};
-
 	this.numberOfGuests = 0;
 	this.selectedDishes = {};
+	this._recipes = [];
 
-
+	//Sets the number of guests
 	this.setNumberOfGuests = function(num) {
 		console.log("Function called: setNumberOfGuests()");
 		this.numberOfGuests = num;
-		this.notify();
+		this.notifyObservers();
 	};
 
-	// should return
+	//Returns the number of guests
 	this.getNumberOfGuests = function() {
 		console.log("Function called: getNumberOfGuests()");
 		return this.numberOfGuests;
@@ -56,6 +40,7 @@ var DinnerModel = function() {
 		return _.uniq(_.flatten(ingredients));
 	};
 
+	//Gets the price of a specific dish
 	this.getDishPrice = function(id) {
 		console.log("Function called: getDishPrice()");
 		price = 0;
@@ -84,7 +69,7 @@ var DinnerModel = function() {
 			return dish.id === id;
 		});
 		this.selectedDishes[selectedDish.type] = selectedDish;
-		this.notify();
+		this.notifyObservers();
 	}
 
 	//Removes dish from menu
@@ -93,10 +78,10 @@ var DinnerModel = function() {
 		_.reject(this.selectedDishes, function(dish) {
 			return dish.id === id;
 		});
-		this.notify();
+		this.notifyObservers();
 	}
 
-	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
+	//Function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
@@ -118,43 +103,115 @@ var DinnerModel = function() {
 			return dish.type == type && found;
 		});
 	};
+	this.getAllRecipes = function (type, filter) {
+		console.log("Function called: getAllRecipes()");
+		var apiKey = "dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP";
+		var pg = "1";
+		var rpp = "25";
+		type = "&any_kw='" + type + "'";
+		if (filter) {
+			filter = "&any_kw='" + filter + "'";
+		}
+		var url = 	"http://api.bigoven.com/recipes?api_key=" + apiKey +
+					"&pg=" + pg + "&rpp=" + rpp + type + filter;
+		console.log(url);
 
-	//function that returns a dish of specific ID
+		$.ajax({
+	        type: "GET",
+	        dataType: 'json',
+	        cache: false,
+	        url: url,
+	        success: function (data) {
+	            console.log("SUCCESS: ajax");
+	            this.convert(data);
+	            notifyObservers(this._recipes);
+	            console.log(data.Title);
+	        }
+	    });
+    };
+
+	// Function that returns a dish of specific ID
 	this.getDish = function (id) {
-		console.log("Function called: getDish(id)");
-		return dish = getRecipeJson(this, this.convert);
-	 //  	for(key in dishes){
-		// 	if(dishes[key].id == id) {
-		// 		return dishes[key];
-		// 	}
-		// }
+	  	for(key in dishes){
+			if(dishes[key].id == id) {
+				return dishes[key];
+			}
+		}
 	};
+	this.getRecipe = function (id) {
+	  	for(key in this._recipes){
+			if(this._recipes[key].id == id) {
+				return this._recipes[key];
+			}
+		}
+	};
+
+	
 
 	this.convert = function (data) {
-		console.log("Function called: addDishToMenu()");
-		var dish = {
-			'id':data.RecipeID,
-			'name':data.Title,
-			'type':data.Category,
-			'image':data.ImageURL,
-			'description':data.Instructions,
-			//'description':data.Description,
-			//'instructions':data.Instructions,
-			'ingredients':[{
-				'name':'cookies',
-				'quantity':2,
-				'unit':'',
-				'price':1
-				},{
-				'name':'milk',
-				'quantity':2,
-				'unit':'dl',
-				'price':1
-			}]
-		};
-		console.log("..........Dish converted into: ",dish);
-		return dish;
+		console.log("Function called: convert()");
+		_.each(data,function(recipe){
+			var recipe = {
+				'id':data.RecipeID,
+				'name':data.Title,
+				'type':data.Category,
+				'image':data.ImageURL,
+				'description':data.Instructions,
+				//'description':data.Description,
+				//'instructions':data.Instructions,
+				'ingredients':[{
+					'name':'cookies',
+					'quantity':2,
+					'unit':'',
+					'price':1
+					},{
+					'name':'milk',
+					'quantity':2,
+					'unit':'dl',
+					'price':1
+				}]
+			}
+			this._recipes.push(recipe);
+		})
+		
 	};
+
+	
+
+	/*****************************************  
+	      Observable implementation    
+	*****************************************/
+
+	/*this.listeners = [];
+
+	this.listenTo = function(fun) {
+		console.log("Function called: listenTo()");
+		this.listeners.push(fun);
+	};
+
+	this.notify = function() {
+		console.log("Function called: notify()");
+		_.each(this.listeners, function(listener) {
+			listener();
+		});
+	};*/
+
+	this._observers = [];
+
+	this.addObserver = function(observer) 
+	{
+		this._observers.push(observer);
+	}
+
+	this.notifyObservers = function(arg) 
+	{
+		for(var i=0; i<this._observers.length; i++) 
+		{
+			this._observers[i].update(arg);
+		}	
+	}
+
+
 
 
 	// the dishes variable contains an array of all the 

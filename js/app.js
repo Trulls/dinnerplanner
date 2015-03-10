@@ -52,12 +52,6 @@ var App = function(model) {
   this.switchView = function(view, choice) {
     viewsShown[view](choice);
   };
-
-  this.notifyObservers = function() {
-    _.each(views, function(v, i) {
-      v.notify();
-    });
-  };
 };
 
 $(function() {
