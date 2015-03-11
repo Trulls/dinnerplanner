@@ -14,16 +14,17 @@ var IngredientView = function (container, model) {
   this.addIngredients = function(dish) {
     _.each(dish.ingredients, function(ingredient) {
       ingredientContainer.append('<div class="row">'+
-                '<div class="col-xs-2">'+ingredient.quantity+'</div>'+
-                '<div class="col-xs-6">'+ingredient.name+'</div>'+
-                '<div class="col-xs-2">SEK</div>'+
-                '<div class="col-xs-2">'+ingredient.price+'</div>'+
+                '<div class="col-xs-1">' + ingredient.quantity.toFixed(2) + '</div>' +
+                '<div class="col-xs-4">' + ingredient.unit + '</div>' +
+                '<div class="col-xs-4">' + ingredient.name + '</div>' +
+                '<div class="col-xs-1">SEK</div>' +
+                '<div class="col-xs-1">' + ingredient.price.toFixed(2) + '</div>' +
               '</div>')
     });
   };
 
   this.setTotalPrice = function(dish) {
-    container.find('#price-per-dish').html(dish.price);
+    container.find('#price-per-dish').html(dish.price.toFixed(2));
   };
 
   this.show = function() {

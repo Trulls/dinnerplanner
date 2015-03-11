@@ -1,6 +1,7 @@
 //ExampleView Object constructor
 var SelectView = function (container, model, router) {
 
+  // Variables
   var opts = {
     lines: 13, // The number of lines to draw
     length: 12, // The length of each line
@@ -51,7 +52,7 @@ var SelectView = function (container, model, router) {
     container.hide();
   };
   this.update = function(category, filter) {
-    // console.log("Update called: SelectView");
+    console.log("Update called: SelectView");
     this.spinner.stop();
     menuContainer.html('');
     filter = filter === '' ? undefined : filter

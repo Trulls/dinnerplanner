@@ -178,21 +178,24 @@ var DinnerModel = function () {
 				}
 
 				var _ingredients = [];
-				var _price = 0;
+				var _totalPrice = 0;
 
 				dish.Ingredients.forEach(function (ingredient) {
+					var _quantity = ingredient.Quantity;
+					var _price = _quantity;
+					_totalPrice += _price;
+
 					var _ingredient = {
 						'name':ingredient.Name,
-						'quantity':ingredient.Quantity,
+						'quantity':_quantity,
 						'unit':ingredient.Unit,
-						'price':ingredient.Quantity
+						'price':_price
 					}
 					_ingredients.push(_ingredient);
-					_price = _price + _ingredient.price;
 				});
 
 				_recipe.ingredients = _ingredients;
-				_recipe.price = _price;
+				_recipe.price = _totalPrice;
 
 				// console.log("Request done");
 				window.app.switchView(view);

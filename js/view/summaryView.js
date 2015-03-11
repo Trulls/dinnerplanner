@@ -6,14 +6,14 @@ var SummaryView = function (container, model) {
   this.confirmButton = container.find('.confirm-dinner');
 
   this.addDishToSelected = function(dish) {
-    dishesContainer.append('<div>'+
-                              '<div class="col-xs-8">'+dish.name+'</div>'+
-                              '<div class="col-xs-4">'+dish.price+'</div>'+
+    dishesContainer.append('<div>' + 
+                              '<div class="col-xs-8">' + dish.name + '</div>' + 
+                              '<div class="col-xs-4">' + dish.price.toFixed(2) + '</div>' + 
                             '</div>');
   };
 
   this.setMenuPrice = function() {
-    container.find('.menu-price').html(model.getTotalMenuPrice());
+    container.find('.menu-price').html((model.getTotalMenuPrice()).toFixed(2));
   };
 
   this.setNumberOfGuests = function(n) {
