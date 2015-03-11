@@ -13,8 +13,8 @@ var DinnerModel = function () {
 
 	this.notifyObservers = function () {
 		// console.log("Function called: notifyObservers()");
-		// console.log(dishes);
-		//console.log(this._observers);
+		console.log("selected dishes.....: ");
+		console.log(this.selectedDishes);
 		for(var i=0; i<this._observers.length; i++) {
 			this._observers[i].update();
 			// console.log(this._observers[i]);
@@ -61,6 +61,16 @@ var DinnerModel = function () {
 		//console.log("Function called: getDishPrice()");
 		price = 0;
 		dish = this.getDish(id);
+		console.log(dish);
+		dish.ingredients.forEach(function (ingredient) {
+			price += ingredient.price;
+		});
+		return price;
+	};
+	this.getDishPriceByDish = function (dish) {
+		//console.log("Function called: getDishPrice()");
+		price = 0;
+		console.log(dish);
 		dish.ingredients.forEach(function (ingredient) {
 			price += ingredient.price;
 		});
@@ -72,7 +82,7 @@ var DinnerModel = function () {
 		//console.log("Function called: getTotalMenuPrice()");
 		var unitCost = 0;
 		_.each(this.selectedDishes, function (dish) {
-			unitCost += this.getDishPrice(dish.id);
+			unitCost += this.getDishPriceByDish(dish);
 		}, this);
 		return unitCost * this.numberOfGuests;
 	};
@@ -139,11 +149,9 @@ var DinnerModel = function () {
 					"&pg=" + pg + "&rpp=" + rpp + typeq + filterq;
 
 		var myModel = this;
-		myModel.notifyObservers();
 
 		//http://api.bigoven.com/recipes?api_key=dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP&pg=1&rpp=25&any_kw='main dish'
 		//http://api.bigoven.com/recipe/196149?api_key=dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP
-		//console.log("URL: " + url);
 
 		$.ajax({
 	        type: "GET",
@@ -152,7 +160,7 @@ var DinnerModel = function () {
 	        url: url,
 	        success: function (data) {
 	            console.log("SUCCESS: ajax");
-	            console.log(data)
+	            // console.log(data)
 	            var _recipes = [];
 	            for (var i=0; i<data.Results.length; i++) {
 	            	var dish = data.Results[i];
@@ -160,7 +168,7 @@ var DinnerModel = function () {
 	            	var recipe = {
 						'id':dish.RecipeID,
 						'name':dish.Title,
-						'type':filter,
+						'type':type,
 						'image':dish.ImageURL,
 						'description':dish.Description,
 						'instruction':dish.Instruction,
@@ -175,6 +183,7 @@ var DinnerModel = function () {
 				}
 				console.log("Request done");
 				dishes = _recipes;
+				console.log(myModel.selectedDishes);
 				myModel.notifyObservers();
             }
 	    });
@@ -187,13 +196,36 @@ var DinnerModel = function () {
 				return dishes[key];
 			}
 		}
-	};
-	this.getRecipe = function (id) {
-	  	for(key in this._recipes){
-			if(this._recipes[key].id == id) {
-				return this._recipes[key];
-			}
-		}
+		var apiKey = "dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP";
+		var url = 	"http://api.bigoven.com/recipes/" + id + "?api_key=" + apiKey;
+
+		var myModel = this;
+
+		$.ajax({
+	        type: "GET",
+	        dataType: 'json',
+	        cache: false,
+	        url: url,
+	        success: function (data) {
+	            console.log("SUCCESS: ajax");
+	            console.log(data)
+            	var recipe = {
+					'id':dish.RecipeID,
+					'name':dish.Title,
+					'type':type,
+					'image':dish.ImageURL,
+					'description':dish.Description,
+					'instruction':dish.Instruction,
+					'ingredients':[{ 
+						'name':'ice cream',
+						'quantity':100,
+						'unit':'ml',
+						'price':6
+					}]
+				}
+				return recipe;
+            }
+	    });
 	};
 
 	// the dishes variable contains an array of all the 

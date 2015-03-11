@@ -1,9 +1,4 @@
 var DescriptionView = function (container, model) {
-  // Get all the relevant elements of the view (ones that show data
-  // and/or ones that responed to interaction)
-  // Test fixture
-  var testDish = model.getDish(1);
-  // ----
 
   // Fields
   var dishContainer = container.find('#dish-description');

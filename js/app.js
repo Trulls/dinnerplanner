@@ -51,7 +51,7 @@ var App = function(model) {
 };
 
 $(function() {
-  console.log("Instantiating model");
+  //console.log("Instantiating model");
 	var model = new DinnerModel();
   model.getAllRecipes('Main dish');
   // model.setNumberOfGuests(4);
