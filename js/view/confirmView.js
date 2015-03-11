@@ -10,7 +10,7 @@ var ConfirmView = function (container, model) {
 
   // Functions
   this.setNumberOfGuests = function() {
-    guestsContainer.append('<h2 class="mydinner-header col-xs-8">'+
+    guestsContainer.append('<h2 class="mydinner-header col-xs-9">'+
                             'My Dinner: '+model.getNumberOfGuests()+
                             ' people</h2>'
                             );

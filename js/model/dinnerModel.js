@@ -7,24 +7,7 @@ var DinnerModel = function () {
 	this._observers = [];
 	var dishes = [];
 
-	var opts = {
-		lines: 13, // The number of lines to draw
-		length: 20, // The length of each line
-		width: 10, // The line thickness
-		radius: 30, // The radius of the inner circle
-		corners: 1, // Corner roundness (0..1)
-		rotate: 0, // The rotation offset
-		direction: 1, // 1: clockwise, -1: counterclockwise
-		color: '#000', // #rgb or #rrggbb or array of colors
-		speed: 1, // Rounds per second
-		trail: 60, // Afterglow percentage
-		shadow: false, // Whether to render a shadow
-		hwaccel: false, // Whether to use hardware acceleration
-		className: 'spinner', // The CSS class to assign to the spinner
-		zIndex: 2e9, // The z-index (defaults to 2000000000)
-		top: '50%', // Top position relative to parent
-		left: '50%' // Left position relative to parent
-	};
+	
 
 	this.addObserver = function (observer) {
 		//console.log("Function called: addObserver()");
@@ -130,13 +113,11 @@ var DinnerModel = function () {
 	this.getAllRecipes = function (type, filter) {
 		// console.log("Function called: getAllRecipes()");
 
-		var target = document.getElementById('menu-container');
-		console.log(target);
-		var spinner = new Spinner(opts).spin(target);
+
 
 		var apiKey = "dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP";
 		var pg = "1";
-		var rpp = "12";
+		var rpp = "15";
 		var typeq = "&any_kw='" + type + "'";
 		var filterq = "";
 		if (filter) {
@@ -167,7 +148,7 @@ var DinnerModel = function () {
 				// console.log("Request done");
 				dishes = _recipes;
 				myModel.notifyObservers();
-				spinner.stop();
+				// spinner.stop();
             }
 	    });
     };

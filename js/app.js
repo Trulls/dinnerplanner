@@ -46,12 +46,19 @@ var App = function(model) {
     viewsShown[view](choice);
     model.notifyObservers();
   };
+
+  this.startSpinning = function() {
+    views.selectView.startSpinner();
+  };
 };
 
 $(function() {
   // console.log("Instantiating model, controllers and views");
 	var model = new DinnerModel();
-  model.getAllRecipes('Main dish');
   window.app = new App(model);
+  
   app.switchView('select')
+  app.startSpinning();
+  model.getAllRecipes('Main dish');
+
 });

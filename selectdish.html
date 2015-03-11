@@ -20,13 +20,13 @@
     <!-- Summary View -->
 
     <div class="summary-container summary-box col-xs-3">
-      <h2>My Dinner</h2>
+      <h2>My Dinner <3</h2>
       <form>
-        <label for="number-people">People</label>
+        <label for="number-people">Number of people</label>
         <input id="number-people"
                type="number"
                min="0"
-               max="10"
+               max="20"
                value="4">
       </form>
       <div class="row sub-header-container selectdish-box">
@@ -34,14 +34,14 @@
           <div class="sub-content-box col-xs-8">Dish</div>
           <div class="sub-content-box col-xs-4">Cost</div>
         </div>
-        <div id="selected-dishes">
-        </div>
+        <div id="selected-dishes"></div>
         <div>
           <div class="sub-content-box col-xs-8">Total SEK</div>
           <div class="sub-content-box col-xs-4 menu-price"></div>
         </div>
         <a href="confirmdinner.html" class="btn confirm-button confirm-dinner">Confirm dinner</a>
       </div>
+      <div id="spin-city"></div>
     </div>
 
     <!-- Select view -->
@@ -77,10 +77,15 @@
     <div class="content-box description-container description-box container-fluid">
       <div class="row">
         <div class="container col-xs-6">
+          
           <div id="dish-description"></div>
-          <a href="selectdish.html" class="btn start-button back-button">Back to Select Dish</a>
+          
           <div id="dish-preparation"></div>
+          <div class="row">
+            <a href="selectdish.html" class="btn start-button back-button">Back to Select Dish</a>
+          </div>
         </div>
+
         <div class="ingredient-box ingredient-container col-xs-6">
           <div id="ingredient-guests">
           <hr class="divider"/>
@@ -106,7 +111,7 @@
       <div class="sub-content-box">
         <div class="sub-header-container container-fluid">
           <div id="sumheader-numbers"></div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <a href="selectdish.html" class="btn start-button back-button">Go back and edit dinner</a>
           </div>
         </div>
@@ -117,7 +122,7 @@
         </div>
         <div class="col-xs-3">
             <div class="vertical-line">
-                <p>Total:</p>
+                <p>Total SEK:</p>
                 <div class="menu-price"></div>
             </div>
         </div>
@@ -134,7 +139,7 @@
       <div class="sub-content-box">
         <div class="sub-header-container container-fluid sumheader-container">
           <div id="sumheader-numbers"></div>
-          <div class="col-xs-4">
+          <div class="col-xs-3">
             <a href="selectdish.html" class="btn start-button back-button">Go back and edit dinner</a>
           </div>
         </div>
@@ -150,8 +155,7 @@
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <!-- spin -->
-    <script scr="js/model/spin.js/"></script>
-    <script scr="js/model/spin.min.js/"></script>
+    <script src="js/spin.js"></script>
     <!-- Underscore -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <!-- The application JavaScript code -->

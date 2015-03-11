@@ -8,13 +8,18 @@ var DescriptionView = function (container, model) {
   // Functions
   this.addDishToDescription = function(dish) {
     dishDescription.append(
-            '<h1>'+dish.name+'</h1>' +
-            '<img class="course-container course-box col-xs-6" src="'+dish.image+'"></img>' +
-            '<p>'+dish.description+'</p>');
-
-    dishPreparation.append(
-            '<h2>PREPARATION</h2>'+
-            '<p>'+dish.instruction+'</p>');
+              '<h2>' + dish.name+'</h2>' +
+              '<img class="course-container course-box" src="' + dish.image + '"></img>');
+    if (dish.description.length > 0) {
+      dishDescription.append(
+              '<h3>Description</h3>' + 
+              '<p>' + dish.description + '</p>');
+    };
+    if (dish.instruction.length > 0) {
+      dishPreparation.append(
+              '<h3>Preparation</h3>' +
+              '<p>' + dish.instruction + '</p>');
+    }
   };
   this.show =function() {
     container.show();
