@@ -67,10 +67,6 @@ var DinnerModel = function () {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function () {
-		//console.log("Function called: addDishToMenu()");
-		// selectedDish = _.find(dishes, function (dish) {
-		// 	return dish.id === id;
-		// });
 		this.selectedDishes[currentDish.type] = currentDish;
 		this.notifyObservers();
 	}
@@ -126,9 +122,6 @@ var DinnerModel = function () {
 					"&pg=" + pg + "&rpp=" + rpp + typeq + filterq;
 		var myModel = this;
 
-		//http://api.bigoven.com/recipes?api_key=dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP&pg=1&rpp=25&any_kw='main dish'
-		//http://api.bigoven.com/recipe/196149?api_key=dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP
-
 		$.ajax({
 	        type: "GET",
 	        dataType: 'json',
@@ -157,7 +150,6 @@ var DinnerModel = function () {
 	// Function that returns a dish of specific ID
 	this.getDish = function (id, view) {
 		//console.log("Function called: getDish(id)");
-
 		var apiKey = "dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP";
 		var url = 	"http://api.bigoven.com/recipe/" + id + "?api_key=" + apiKey;
 		var myModel = this;

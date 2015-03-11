@@ -16,7 +16,6 @@ var ConfirmView = function (container, model) {
                             );
   };
   this.addDishToSelected = function(dish, update) {
-    // console.log("Function called: addDishToSelected()");
     dishesContainer.append('<div class="course-container col-xs-3">' +
                             '<a href="description.html" data-id="'+dish.id+'">' +
                               '<div class="course-box">' +

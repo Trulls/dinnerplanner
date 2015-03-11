@@ -7,6 +7,7 @@ var SelectView = function (container, model, router) {
   // Links
   this.dishLink = container.find('.dish-picker');
   this.dropDown = container.find('select');
+  this.input = container.find('input');
 
   // Functions
   this.addDishToMenu = function(dish) {
@@ -25,10 +26,11 @@ var SelectView = function (container, model, router) {
   this.hide = function() {
     container.hide();
   };
-  this.update = function(category) {
+  this.update = function(category, filter) {
     // console.log("Update called: SelectView");
     menuContainer.html('');
-    _.each(model.getAllDishes(category), function(dish) {
+    filter = filter === '' ? undefined : filter
+    _.each(model.getAllDishes(category, filter), function(dish) {
       this.addDishToMenu(dish);
     }, this);
   };

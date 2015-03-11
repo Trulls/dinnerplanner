@@ -12,14 +12,16 @@ var SelectController = function (view, model) {
   view.dishLink.click(function(e) {
     e.preventDefault();
     model.getDish($(e.target).parents('a').attr('data-id'), 'description');
-    // window.app.switchView('description');
   });
   view.dropDown.change(function(e) {
     model.getAllRecipes(categories[$(e.target).find('option:selected').text()])
-    // view.update(categories[$(e.target).find('option:selected').text()]);
+  });
+  view.input.on('input', function(e) {
+    // filter = $(e.target).val();
+    model.getAllRecipes(categories[$('select option:selected').text()], $(e.target).val())
+    // view.update(categories[$('select option:selected').text()], filter);
   });
   
   // Init
-  // view.update('main dish');
   this.addObserver();
 };
