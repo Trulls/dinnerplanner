@@ -11,13 +11,15 @@ var SelectController = function (view, model) {
   };
   view.dishLink.click(function(e) {
     e.preventDefault();
-    window.app.switchView('description', $(e.target).parents('a').attr('data-id'));
+    model.getDish($(e.target).parents('a').attr('data-id'), 'description');
+    // window.app.switchView('description');
   });
   view.dropDown.change(function(e) {
     model.getAllRecipes(categories[$(e.target).find('option:selected').text()])
     // view.update(categories[$(e.target).find('option:selected').text()]);
   });
+  
   // Init
-  view.update('main dish');
+  // view.update('main dish');
   this.addObserver();
 };

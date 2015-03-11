@@ -23,7 +23,7 @@ var IngredientView = function (container, model) {
   };
 
   this.setTotalPrice = function(dish) {
-    container.find('#price-per-dish').html(model.getDishPrice(dish.id));
+    container.find('#price-per-dish').html(dish.price);
   };
 
   this.show = function() {
@@ -35,11 +35,13 @@ var IngredientView = function (container, model) {
   };
 
   this.update = function(dish) {
-    //console.log("Update called: IngredientView");
-    ingredientContainer.html('');
-    guestContainer.html('')
-    this.setNumberOfGuests();
-    this.addIngredients(dish);
-    this.setTotalPrice(dish);
+    // console.log("Update called: IngredientView");
+    if (dish != undefined) {
+      ingredientContainer.html('');
+      guestContainer.html('')
+      this.setNumberOfGuests();
+      this.addIngredients(dish);
+      this.setTotalPrice(dish);
+    };
   };
 };

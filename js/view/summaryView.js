@@ -1,6 +1,4 @@
 var SummaryView = function (container, model) {
-  // Get all the relevant elements of the view (ones that show data
-  // and/or ones that responed to interaction)
 
   var dishesContainer = $('#selected-dishes');
 
@@ -8,9 +6,10 @@ var SummaryView = function (container, model) {
   this.confirmButton = container.find('.confirm-dinner');
 
   this.addDishToSelected = function(dish) {
-    console.log("dish added: ")
-    console.log(dish);
-    dishesContainer.append('<div class="col-xs-8">'+dish.name+'</div><div class="col-xs-4">'+model.getDishPriceByDish(dish)+'</div>');
+    dishesContainer.append('<div>'+
+                              '<div class="col-xs-8">'+dish.name+'</div>'+
+                              '<div class="col-xs-4">'+dish.price+'</div>'+
+                            '</div>');
   };
 
   this.setMenuPrice = function() {
@@ -30,9 +29,8 @@ var SummaryView = function (container, model) {
   };
 
   this.update = function() {
-    console.log("Update called: SummaryView");
+    // console.log("Update called: SummaryView");
     dishesContainer.html('');
-    console.log("selectedDishes sumview: " + model.selectedDishes.length);
     _.each(model.selectedDishes,function(dish) {
       this.addDishToSelected(dish);
     }, this);

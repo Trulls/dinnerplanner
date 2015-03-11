@@ -26,8 +26,8 @@ var App = function(model) {
           views.descriptionView.show();
           views.summaryView.show();
           views.ingredientView.show();
-          controllers.descriptionController.selectDish(choice);
-          controllers.ingredientController.selectDish(choice);
+          // controllers.descriptionController.selectDish(choice);
+          // controllers.ingredientController.selectDish(choice);
         },
         confirm: function() {
           this.hideAll();
@@ -45,13 +45,14 @@ var App = function(model) {
       };
 
   this.switchView = function(view, choice) {
-    // console.log("Switched to view: " + view);
+    //console.log("Switched to view: " + view);
     viewsShown[view](choice);
+    model.notifyObservers();
   };
 };
 
 $(function() {
-  //console.log("Instantiating model");
+  console.log("Instantiating model");
 	var model = new DinnerModel();
   model.getAllRecipes('Main dish');
   // model.setNumberOfGuests(4);

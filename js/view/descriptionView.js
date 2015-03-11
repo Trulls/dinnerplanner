@@ -1,18 +1,20 @@
 var DescriptionView = function (container, model) {
 
   // Fields
-  var dishContainer = container.find('#dish-description');
+  var dishDescription = container.find('#dish-description');
+  var dishPreparation = container.find('#dish-preparation');
+  this.backButton = container.find('.back-button');
 
   // Functions
-
   this.addDishToDescription = function(dish) {
-    dishContainer.append('<h1>'+dish.name+'</h1>' +
-            '<img src="'+dish.image+'"></img>' +
-            '<p>'+dish.description+'</p>'+
-            '<a href="selectdish.html" class="btn start-button back-button">Back to Select Dish</a>'+
+    dishDescription.append(
+            '<h1>'+dish.name+'</h1>' +
+            '<img class="course-container course-box col-xs-6" src="'+dish.image+'"></img>' +
+            '<p>'+dish.description+'</p>');
+
+    dishPreparation.append(
             '<h2>PREPARATION</h2>'+
             '<p>'+dish.instruction+'</p>');
-    this.backButton = dishContainer.find('.back-button')
   };
   this.show =function() {
     container.show();
@@ -21,8 +23,11 @@ var DescriptionView = function (container, model) {
     container.hide();
   };
   this.update = function(dish) {
-    //console.log("Update called: DescriptionView");
-    dishContainer.html('');
-    this.addDishToDescription(dish);
+    // console.log("Update called: DescriptionView");
+    if (dish != undefined) {
+      dishDescription.html('');
+      dishPreparation.html('');
+      this.addDishToDescription(dish);
+    };
   };
 };
