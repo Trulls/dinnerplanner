@@ -57,7 +57,7 @@ var ConfirmView = function (container, model) {
     container.hide();
   };
   this.update = function() {
-    console.log("Update called: ConfirmView");
+    //console.log("Update called: ConfirmView");
     this.spinner.stop();
     guestsContainer.html('');
     dishesContainer.html('');

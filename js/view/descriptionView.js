@@ -28,7 +28,7 @@ var DescriptionView = function (container, model) {
     container.hide();
   };
   this.update = function(dish) {
-    // console.log("Update called: DescriptionView");
+    //console.log("Update called: DescriptionView");
     if (dish != undefined) {
       dishDescription.html('');
       dishPreparation.html('');

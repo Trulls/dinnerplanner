@@ -86,7 +86,7 @@ var DinnerModel = function () {
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-		// console.log("Function called: getAllDishes()");
+		//console.log("Function called: getAllDishes()");
 		if(type){
 			return $(dishes).filter(function (index,dish) {
 				var found = true;
@@ -111,10 +111,7 @@ var DinnerModel = function () {
 	};
 
 	this.getAllRecipes = function (type, filter) {
-		// console.log("Function called: getAllRecipes()");
-
-
-
+		//console.log("Function called: getAllRecipes()");
 		var apiKey = "dvx6H6QTYoSVG1J9p9BaIcf097ZInDlP";
 		var pg = "1";
 		var rpp = "15";
@@ -133,7 +130,7 @@ var DinnerModel = function () {
 	        cache: false,
 	        url: url,
 	        success: function (data) {
-	            // console.log("SUCCESS: ajax");
+	            //console.log("SUCCESS: ajax");
 	            var _recipes = [];
 	            for (var i=0; i<data.Results.length; i++) {
 	            	var dish = data.Results[i];
@@ -145,7 +142,7 @@ var DinnerModel = function () {
 					}
 					_recipes.push(recipe);
 				}
-				// console.log("Request done");
+				//console.log("Request done");
 				dishes = _recipes;
 				myModel.notifyObservers();
 				// spinner.stop();
@@ -166,7 +163,7 @@ var DinnerModel = function () {
 	        cache: true,
 	        url: url,
 	        success: function (data) {
-	            // console.log("SUCCESS: ajax");
+	            //console.log("SUCCESS: ajax");
 	            var dish = data;
             	var _recipe = {
 					'id':dish.RecipeID,
@@ -197,7 +194,7 @@ var DinnerModel = function () {
 				_recipe.ingredients = _ingredients;
 				_recipe.price = _totalPrice;
 
-				// console.log("Request done");
+				//console.log("Request done");
 				window.app.switchView(view);
 				myModel.notifyObservers(_recipe);
 				currentDish = _recipe;

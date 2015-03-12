@@ -29,7 +29,7 @@ var SummaryView = function (container, model) {
   };
 
   this.update = function() {
-    // console.log("Update called: SummaryView");
+    //console.log("Update called: SummaryView");
     dishesContainer.html('');
     _.each(model.selectedDishes,function(dish) {
       this.addDishToSelected(dish);

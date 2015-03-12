@@ -65,7 +65,7 @@ var PrintView = function (container, model) {
     container.hide();
   };
   this.update = function() {
-    console.log("Update called: PrintView");
+   //console.log("Update called: PrintView");
     this.spinner.stop();
     guestsContainer.html('');
     dishesContainer.html('');

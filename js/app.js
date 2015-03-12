@@ -53,7 +53,7 @@ var App = function(model) {
 };
 
 $(function() {
-  // console.log("Instantiating model, controllers and views");
+  //console.log("Instantiating model, controllers and views");
 	var model = new DinnerModel();
   window.app = new App(model);
   

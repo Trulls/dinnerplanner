@@ -36,7 +36,7 @@ var IngredientView = function (container, model) {
   };
 
   this.update = function(dish) {
-    // console.log("Update called: IngredientView");
+    //console.log("Update called: IngredientView");
     if (dish != undefined) {
       ingredientContainer.html('');
       guestContainer.html('')
